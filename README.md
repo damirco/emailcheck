@@ -1,0 +1,2 @@
+# emailcheck
+Validates email addresses
