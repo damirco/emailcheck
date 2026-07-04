@@ -3,7 +3,7 @@ namespace Damirco\Emailcheck;
 
 class Email
 {
-    const string REGEX = '~^[\w.+-]+@[\w.-]+$~u';
+    const string REGEX = '~^[\w.+-]+@[\w.-]+\.[a-zA-Z]{2,}$~u';
 
     public function __construct(readonly private string $email)
     {
