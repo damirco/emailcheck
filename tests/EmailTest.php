@@ -1,13 +1,14 @@
 <?php
-
 namespace Damirco\Emailcheck\Tests;
 
 use Damirco\Emailcheck\Email;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 
 class EmailTest extends TestCase
 {
-    /** @dataProvider validSyntaxProvider */
+    #[DataProvider('validSyntaxProvider')]
     public function testIsSyntaxValidReturnsTrue(string $email): void
     {
         $this->assertTrue((new Email($email))->isSyntaxValid());
@@ -26,7 +27,7 @@ class EmailTest extends TestCase
         ];
     }
 
-    /** @dataProvider invalidSyntaxProvider */
+    #[DataProvider('invalidSyntaxProvider')]
     public function testIsSyntaxValidReturnsFalse(string $email): void
     {
         $this->assertFalse((new Email($email))->isSyntaxValid());
@@ -44,11 +45,13 @@ class EmailTest extends TestCase
         ];
     }
 
+    #[Group('integration')]
     public function testIsMxValidReturnsTrueForKnownDomain(): void
     {
         $this->assertTrue((new Email('test@gmail.com'))->isMxValid());
     }
 
+    #[Group('integration')]
     public function testIsMxValidReturnsFalseForFakeDomain(): void
     {
         $this->assertFalse((new Email('test@thisdomaindoesnotexist12345.com'))->isMxValid());
@@ -59,6 +62,7 @@ class EmailTest extends TestCase
         $this->assertFalse((new Email('invalid'))->isMxValid());
     }
 
+    #[Group('integration')]
     public function testIsValidCombinesSyntaxAndMx(): void
     {
         $valid = new Email('test@gmail.com');

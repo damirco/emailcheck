@@ -58,7 +58,8 @@ $result = $set->check(check_syntax: true, check_mx: false);
 ## Testing
 
 ```bash
-composer test
+composer test              # unit tests (no network)
+composer test:integration  # MX/DNS tests (requires network)
 ```
 
 ## License

@@ -1,8 +1,8 @@
 <?php
-
 namespace Damirco\Emailcheck\Tests;
 
 use Damirco\Emailcheck\EmailSet;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 
 class EmailSetTest extends TestCase
@@ -24,6 +24,7 @@ class EmailSetTest extends TestCase
         $this->assertContains('', $result['invalid']);
     }
 
+    #[Group('integration')]
     public function testCheckMxRecordsSeparatesByDns(): void
     {
         $set = new EmailSet([
@@ -37,6 +38,7 @@ class EmailSetTest extends TestCase
         $this->assertContains('test@thisdomaindoesnotexist12345.com', $result['invalid']);
     }
 
+    #[Group('integration')]
     public function testCheckWithBothFlagsEnabled(): void
     {
         $set = new EmailSet([
